@@ -64,3 +64,5 @@ ax_4.grid()
 
 st.pyplot(fig2)
 
+sns.boxplot(x="Symbol", y="High", data=a)
+
