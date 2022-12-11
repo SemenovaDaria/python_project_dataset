@@ -15,8 +15,13 @@ a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("MC.PA", "Louis Vuitto
 a.head(6)
 a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("KER.PA", "Kering"))
 a.head(6)
+a["purchase price"] = (a["High"] - a["Open"])
+a["sale price"] = (a["Close"] - a["Low"])
 a["estimated income"] = (a["Close"] - a["Open"])
 a["profit"] = a["estimated income"].apply(lambda x: True if x > 0 else False)
+del a["sale price"]
+del a["purchase price"]
+
 fig = plt.figure(dpi=150, figsize=(16,9))
 sns.pairplot(a[["Symbol", "Close", "Open"]],
              hue='Symbol',
