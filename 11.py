@@ -7,7 +7,14 @@ import matplotlib.pyplot as plt
 a = pd.read_csv("fashion.csv")
 st.title('Mid-term report')
 
-
+a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("CDI.PA", "Christian Dior"))
+a.head(6)
+a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("RMS.PA", "Hermes"))
+a.head(6)
+a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("MC.PA", "Louis Vuitton"))
+a.head(6)
+a['Symbol'] = a['Symbol'].apply(lambda name: name.replace("KER.PA", "Kering"))
+a.head(6)
 fig = plt.figure(dpi=150, figsize=(16,9))
 sns.pairplot(a[["Symbol", "Close", "Open"]],
              hue='Symbol',
