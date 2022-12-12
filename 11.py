@@ -66,3 +66,59 @@ st.pyplot(fig2)
 
 sns.boxplot(x="Symbol", y="High", data=a)
 
+months = ['06', '12']
+df_hermes = a[a["Symbol"] == "Hermes"][['Date', 'Open']]
+df_lv = a[a["Symbol"] == "Louis Vuitton"][['Date', 'Open']]
+df_cd = a[a["Symbol"] == "Christian Dior"][['Date', 'Open']]
+df_kering = a[a["Symbol"] == "Kering"][['Date', 'Open']]
+[102]
+df_hermes["Date"] = df_hermes.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_hermes.dropna(inplace=True)
+df_hermes.rename(columns={'Open': 'Cost'}, inplace=True)
+df_hermes.index = np.arange(df_hermes.shape[0])
+df_lv["Date"] = df_lv.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_lv.dropna(inplace=True)
+df_lv.rename(columns={'Open': 'Cost'}, inplace=True)
+df_lv.index = np.arange(df_lv.shape[0])
+df_hermes["Date"] = df_hermes.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_hermes.dropna(inplace=True)
+df_hermes.rename(columns={'Open': 'Cost'}, inplace=True)
+df_hermes.index = np.arange(df_hermes.shape[0])
+df_lv["Date"] = df_lv.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_lv.dropna(inplace=True)
+df_lv.rename(columns={'Open': 'Cost'}, inplace=True)
+df_lv.index = np.arange(df_lv.shape[0])
+df_cd["Date"] = df_cd.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_cd.dropna(inplace=True)
+df_cd.rename(columns={'Open': 'Cost'}, inplace=True)
+df_cd.index = np.arange(df_cd.shape[0])
+df_kering["Date"] = df_kering.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
+df_kering.dropna(inplace=True)
+df_kering.rename(columns={'Open': 'Cost'}, inplace=True)
+df_kering.index = np.arange(df_kering.shape[0])
+DF = pd.DataFrame()
+DF['Date'] = df_hermes["Date"]
+DF['Cost_hermes'] = df_hermes["Cost"]
+DF['Cost_lv'] = df_lv["Cost"]
+DF['Cost_cd'] = df_cd["Cost"]
+DF['Cost_kering'] = df_kering["Cost"]
+DF = pd.DataFrame()
+DF['Date'] = df_hermes["Date"]
+DF['Cost_hermes'] = df_hermes["Cost"]
+DF['Cost_lv'] = df_lv["Cost"]
+DF['Cost_cd'] = df_cd["Cost"]
+DF['Cost_kering'] = df_kering["Cost"]
+DF.dropna(inplace=True)
+DF
+import plotly.express as px
+plt.figure(figsize=(16,9))
+fig = px.line(DF, x='Date', y=DF.columns)
+fig.update_xaxes(
+    dtick="M6",
+    tickformat="%b  %Y",
+    ticklabelmode="period")
+fig.show()
+
+
+
+
