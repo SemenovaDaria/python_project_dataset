@@ -71,7 +71,6 @@ df_hermes = a[a["Symbol"] == "Hermes"][['Date', 'Open']]
 df_lv = a[a["Symbol"] == "Louis Vuitton"][['Date', 'Open']]
 df_cd = a[a["Symbol"] == "Christian Dior"][['Date', 'Open']]
 df_kering = a[a["Symbol"] == "Kering"][['Date', 'Open']]
-[102]
 df_hermes["Date"] = df_hermes.Date.apply(lambda x: x if ((x[-5: -3] in months) and x[-2:] == '01') else np.NaN)
 df_hermes.dropna(inplace=True)
 df_hermes.rename(columns={'Open': 'Cost'}, inplace=True)
@@ -111,13 +110,13 @@ DF['Cost_kering'] = df_kering["Cost"]
 DF.dropna(inplace=True)
 DF
 import plotly.express as px
-plt.figure(figsize=(16,9))
+fig5 = plt.figure(figsize=(16,9))
 fig = px.line(DF, x='Date', y=DF.columns)
 fig.update_xaxes(
     dtick="M6",
     tickformat="%b  %Y",
     ticklabelmode="period")
-fig.show()
+st.pyplot(fig5)
 
 
 
